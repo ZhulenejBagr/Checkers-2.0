@@ -1,0 +1,77 @@
+﻿@page
+@model Checkers_2._0.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info">Game</h2>
+<br />
+<div class="border">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Games</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create" class="btn btn-info">Create New</a>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    @if (Model.Game.Count() == 0)
+    {
+        <p>No service type exist plese add a service type.</p>
+    }
+    else
+    {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>
+                    @Html.DisplayNameFor(m => m.Game[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Game[0].Player1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Game[0].Player2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Game[0].gameState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Game[0].Board)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Game)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Player1)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Player2)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.gameState)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Board)
+            </td>
+            <td style="width:150px">
+                <div class=" btn-group" role="group">
+                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@item.Id">Edit</a>
+                    <a class="btn btn-success text-white" asp-page="" asp-route-Id="@item.Id">Details</a>
+                    <a class="btn btn-danger text-white" asp-page="" asp-route-Id="@item.Id">Delete</a>
+                </div>
+            </td>
+        </tr>
+            }
+
+        </table>
+    }
+</div>

@@ -10,7 +10,8 @@ namespace Checkers_2._0.Model
         public const int Dimension = 8;
 
         public Piece[,] Storage { get; set; }
-        public Board()
+
+        /*public Board()
         {
             Storage = new Piece[Dimension, Dimension];
             //cervena
@@ -39,6 +40,48 @@ namespace Checkers_2._0.Model
             Storage[5, 3] = new Piece(false, false);
             Storage[5, 5] = new Piece(false, false);
             Storage[5, 7] = new Piece(false, false);
+        }*/
+        public Board(string storage)
+        {
+            Storage = new Piece[Dimension, Dimension];
+            var numbers = Array.ConvertAll(storage.Split(' '), int.Parse).ToList();
+
+            for (int j = 0; j < Dimension; j++)
+            {
+
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if (numbers[j * Dimension + k] == 0)
+                    {
+                        Storage[j, k] = null;
+                        continue;
+                    }
+                    if (numbers[j * Dimension + k] == 1)    //cervena
+                    {
+                        Storage[j, k] = new Piece("red");
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 2)    //cerna
+                    {
+                        Storage[j, k] = new Piece("black");
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 3)    //cervena dama
+                    {
+                        Storage[j, k] = new Piece("redKing");
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 4)    //cerna dama
+                    {
+                        Storage[j, k] = new Piece("blackKing");
+                        continue;
+                    }
+                }
+
+            }
         }
         //Převede Board to stringu
         //0 - prazdne pole
@@ -46,7 +89,7 @@ namespace Checkers_2._0.Model
         //2 - cerna figurka
         //3 - cervena dama
         //4 - cerna dama
-        public string SaveBoard(Piece[,] storage)           
+        public string SaveBoard(Piece[,] storage)
         {
             string board = "";
             for (int i = 0; i < Dimension; i++)
@@ -57,35 +100,122 @@ namespace Checkers_2._0.Model
                     {
                         if (storage[i, j].Color == true & storage[i, j].IsKing == false)     //cervena
                         {
-                            board += "1";
+                            board += "1 ";
                             continue;
                         }
                         if (storage[i, j].Color == true & storage[i, j].IsKing == true)     //cervena dama
                         {
-                            board += "3";
+                            board += "3 ";
                             continue;
                         }
                         if (storage[i, j].Color == false & storage[i, j].IsKing == false)     //cerna
                         {
-                            board += "2";
+                            board += "2 ";
                             continue;
                         }
                         if (storage[i, j].Color == false & storage[i, j].IsKing == true)     //cerna dama
                         {
-                            board += "4";
+                            board += "4 ";
                             continue;
                         }
 
                     }
                     else
                     {
-                        board += "0";
+                        board += "0 ";
                         continue;
                     }
 
                 }
             }
+            board = board.Trim();
             return board;
         }
+        /*public string SaveBoardVoid()
+        {
+            for (int i = 0; i < Dimension; i++)
+            {
+                for (int j = 0; j < Dimension; j++)
+                {
+                    if (Storage[i, j] != null)
+                    {
+                        if (Storage[i, j].Color == true & Storage[i, j].IsKing == false)     //cervena
+                        {
+                            board += "1 ";
+                            continue;
+                        }
+                        if (storage[i, j].Color == true & storage[i, j].IsKing == true)     //cervena dama
+                        {
+                            board += "3 ";
+                            continue;
+                        }
+                        if (storage[i, j].Color == false & storage[i, j].IsKing == false)     //cerna
+                        {
+                            board += "2 ";
+                            continue;
+                        }
+                        if (storage[i, j].Color == false & storage[i, j].IsKing == true)     //cerna dama
+                        {
+                            board += "4 ";
+                            continue;
+                        }
+
+                    }
+                    else
+                    {
+                        board += "0 ";
+                        continue;
+                    }
+
+                }
+            }
+            board = board.Trim();
+            return board;
+        }
+        */
+        /*public static  Piece[,] GetBoard(string storage)
+        {
+            Piece[,] output = new Piece[Dimension, Dimension];
+            var numbers = Array.ConvertAll(storage.Split(' '), int.Parse).ToList();
+
+            for (int j = 0; j < Dimension; j++)
+            {
+
+                for (int k = 0; k < Dimension; k++)
+                {
+                    if (numbers[j * Dimension + k] == 0)
+                    {
+                        output[j, k] = null;
+                        continue;
+                    }
+                    if (numbers[j * Dimension + k] == 1)    //cervena
+                    {
+                        output[j, k] = new Piece(true, false);
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 2)    //cerna
+                    {
+                        output[j, k] = new Piece(false, false);
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 3)    //cervena dama
+                    {
+                        output[j, k] = new Piece(true, true);
+                        continue;
+
+                    }
+                    if (numbers[j * Dimension + k] == 4)    //cerna dama
+                    {
+                        output[j, k] = new Piece(false, true);
+                        continue;
+                    }
+                }
+
+            }
+
+            return output;
+        }*/
     }
 }

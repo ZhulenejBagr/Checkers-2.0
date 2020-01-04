@@ -15,9 +15,6 @@ namespace Checkers_2._0
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Board board = new Board();
-            string ahoj = board.SaveBoard(board.Storage);
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

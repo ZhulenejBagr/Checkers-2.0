@@ -20,8 +20,6 @@ namespace Checkers_2._0.Pages
 
         public void OnGet()
         {
-            Board board = new Board();
-            string ahoj = board.SaveBoard(board.Storage);
         }
     }
 }

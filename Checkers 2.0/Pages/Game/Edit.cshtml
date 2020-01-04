@@ -1,0 +1,151 @@
+﻿@page
+@model Checkers_2._0.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+<form method="post">
+    <div class="border">
+        <input type="hidden" asp-for="Game.Id" />
+        <table class="table border">
+            @for (int i = 0; i < 8; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < 8; j++)
+                    {
+                        if (Model.Board.Storage[i, j] != null)
+                        {
+
+
+                            if (Model.Board.Storage[i, j].Value == "red")
+                            {
+                            <th>
+                                Cervena
+                            </th>
+                            }
+                            if (Model.Board.Storage[i, j].Value == "black")
+                            {
+                            <th>
+                                Cerna
+                            </th>
+                            }
+                            if (Model.Board.Storage[i, j].Value == "redKing")
+                            {
+                            <th>
+                                CervenaDama
+                            </th>
+                            }
+                            if (Model.Board.Storage[i, j].Value == "blackKing")
+                            {
+                            <th>
+                                CernaDama
+                            </th>
+                            }
+                        }
+                        else
+                        {
+                            <th>Nic</th>
+                        }
+                    }
+                </tr>
+            }
+            <tr class="table-secondary">
+
+                @if (Model.Board.Storage[0, 0].Value == "red")
+                {
+                    <th>
+                        Cervena
+                    </th>
+                }
+
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -17,7 +17,8 @@ namespace Checkers_2._0.Model
         [Required]
         public string Board { get; set; }
         [Required]
-        public bool IsTurn { get; set; }
+        public bool IsTurn { get; set; }    //true - player1
+                                            //false - player2
 
         public GameState gameState { get; set; }
         public enum GameState
