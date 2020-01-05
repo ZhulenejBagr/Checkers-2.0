@@ -131,48 +131,320 @@ namespace Checkers_2._0.Model
             board = board.Trim();
             return board;
         }
-        /*public string SaveBoardVoid()
+        public void Move(int i, int j, int x, int y)
         {
-            for (int i = 0; i < Dimension; i++)
+            Storage[x, y] = Storage[i, j];
+            Storage[i, j] = null;
+        }
+        public List<Pair> PossibleMoves(int i, int j)
+        {
+            List<Pair> output = new List<Pair>();
+            if (Storage[i,j] != null)
             {
-                for (int j = 0; j < Dimension; j++)
+                if (Storage[i, j].Value == "red")
                 {
-                    if (Storage[i, j] != null)
+                    if (i < 7)
                     {
-                        if (Storage[i, j].Color == true & Storage[i, j].IsKing == false)     //cervena
+                        if (j > 0)
                         {
-                            board += "1 ";
-                            continue;
-                        }
-                        if (storage[i, j].Color == true & storage[i, j].IsKing == true)     //cervena dama
-                        {
-                            board += "3 ";
-                            continue;
-                        }
-                        if (storage[i, j].Color == false & storage[i, j].IsKing == false)     //cerna
-                        {
-                            board += "2 ";
-                            continue;
-                        }
-                        if (storage[i, j].Color == false & storage[i, j].IsKing == true)     //cerna dama
-                        {
-                            board += "4 ";
-                            continue;
-                        }
+                            if (Storage[j - 1, i + 1] != null)
+                            {
+                                if (Storage[j - 1, i + 1].Color ==true )
+                                {
 
+                                }
+                                if (Storage[j - 1, i + 1].Color == false)
+                                {
+                                    PossibleMoves(j - 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i + 1));
+                                }
+                            }
+                            
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i + 1] != null)
+                            {
+                                if (Storage[j + 1, i + 1].Color == true)
+                                {
+
+                                }
+                                if (Storage[j + 1, i + 1].Color == false)
+                                {
+                                    PossibleMoves(j + 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i + 1));
+                                }
+                            }
+                        }
                     }
-                    else
+
+                }
+                if (Storage[i, j].Value == "black")
+                {
+                    if (i > 0)
                     {
-                        board += "0 ";
+                        if (j > 0)
+                        {
+                            if (Storage[j - 1, i - 1] != null)
+                            {
+                                if (Storage[j - 1, i - 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j - 1, i - 1].Color == true)
+                                {
+                                    PossibleMoves(j - 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i - 1));
+                                }
+                            }
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i - 1] != null)
+                            {
+                                if (Storage[j + 1, i - 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j + 1, i - 1].Color == true)
+                                {
+                                    PossibleMoves(j + 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i - 1));
+                                }
+                            }
+                        }
+                    }
+                }
+                if (Storage[i, j].Value == "redKing")
+                {
+                    if (i < 7)
+                    {
+                        if (j > 0)
+                        {
+                            if (Storage[j - 1, i + 1] != null)
+                            {
+                                if (Storage[j - 1, i + 1].Color == true)
+                                {
+
+                                }
+                                if (Storage[j - 1, i + 1].Color == false)
+                                {
+                                    PossibleMoves(j - 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i + 1));
+                                }
+                            }
+
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i + 1] != null)
+                            {
+                                if (Storage[j + 1, i + 1].Color == true)
+                                {
+
+                                }
+                                if (Storage[j + 1, i + 1].Color == false)
+                                {
+                                    PossibleMoves(j + 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i + 1));
+                                }
+                            }
+                        }
+                    }
+                    if (i > 0)
+                    {
+                        if (j > 0)
+                        {
+                            if (Storage[j - 1, i - 1] != null)
+                            {
+                                if (Storage[j - 1, i - 1].Color == true)
+                                {
+
+                                }
+                                if (Storage[j - 1, i - 1].Color == false)
+                                {
+                                    PossibleMoves(j - 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i - 1));
+                                }
+                            }
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i - 1] != null)
+                            {
+                                if (Storage[j + 1, i - 1].Color == true)
+                                {
+
+                                }
+                                if (Storage[j + 1, i - 1].Color == false)
+                                {
+                                    PossibleMoves(j + 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i - 1));
+                                }
+                            }
+                        }
+                    }
+                }
+                if (Storage[i, j].Value == "blackKing")
+                {
+                    if (i < 7)
+                    {
+                        if (j > 0)
+                        {
+                            if (Storage[j - 1, i + 1] != null)
+                            {
+                                if (Storage[j - 1, i + 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j - 1, i + 1].Color == true)
+                                {
+                                    PossibleMoves(j - 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i + 1));
+                                }
+                            }
+
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i + 1] != null)
+                            {
+                                if (Storage[j + 1, i + 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j + 1, i + 1].Color == true)
+                                {
+                                    PossibleMoves(j + 1, i + 1); //jump
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i + 1));
+                                }
+                            }
+                        }
+                    }
+                    if (i > 0)
+                    {
+                        if (j > 0)
+                        {
+                            if (Storage[j - 1, i - 1] != null)
+                            {
+                                if (Storage[j - 1, i - 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j - 1, i - 1].Color == true)
+                                {
+                                    PossibleMoves(j - 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j - 1, i - 1));
+                                }
+                            }
+                        }
+                        if (j < 7)
+                        {
+                            if (Storage[j + 1, i - 1] != null)
+                            {
+                                if (Storage[j + 1, i - 1].Color == false)
+                                {
+
+                                }
+                                if (Storage[j + 1, i - 1].Color == true)
+                                {
+                                    PossibleMoves(j + 1, i + 1);
+                                }
+                                else
+                                {
+                                    output.Add(new Pair(j + 1, i - 1));
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            return output;
+        }
+
+
+
+
+
+
+
+
+        /*public string SaveBoardVoid()
+    {
+        for (int i = 0; i < Dimension; i++)
+        {
+            for (int j = 0; j < Dimension; j++)
+            {
+                if (Storage[i, j] != null)
+                {
+                    if (Storage[i, j].Color == true & Storage[i, j].IsKing == false)     //cervena
+                    {
+                        board += "1 ";
+                        continue;
+                    }
+                    if (storage[i, j].Color == true & storage[i, j].IsKing == true)     //cervena dama
+                    {
+                        board += "3 ";
+                        continue;
+                    }
+                    if (storage[i, j].Color == false & storage[i, j].IsKing == false)     //cerna
+                    {
+                        board += "2 ";
+                        continue;
+                    }
+                    if (storage[i, j].Color == false & storage[i, j].IsKing == true)     //cerna dama
+                    {
+                        board += "4 ";
                         continue;
                     }
 
                 }
+                else
+                {
+                    board += "0 ";
+                    continue;
+                }
+
             }
-            board = board.Trim();
-            return board;
         }
-        */
+        board = board.Trim();
+        return board;
+    }
+    */
         /*public static  Piece[,] GetBoard(string storage)
         {
             Piece[,] output = new Piece[Dimension, Dimension];
