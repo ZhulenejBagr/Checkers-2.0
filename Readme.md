@@ -10,3 +10,10 @@ Je popsán v commitech
 * Uživatel vidí pouz své hry
 ## Databáze
 ![alt text](http://danderson.io/wp-content/uploads/2018/01/AspNetCoreIdentityModel.png)
+Game
+----
+ID
+Player1
+Player2
+IsTurn
+Board
