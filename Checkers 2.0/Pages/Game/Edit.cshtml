@@ -22,32 +22,32 @@
 
                             if (Model.Board.Storage[i, j].Value == "red")
                             {
-                                <th>
-                                    Cervena
+                                <th id="@(i.ToString() +" "+ j.ToString())">
+                                    <button name="button" value="@(i.ToString() + j.ToString())" asp-action="check"><img src="~/redCircle.png" /></button>
                                 </th>
                             }
                             if (Model.Board.Storage[i, j].Value == "black")
                             {
-                                <th>
-                                    Cerna
+                                <th id="@(i.ToString() + j.ToString())">
+                                    <img src="~/blackCircle.png" />
                                 </th>
                             }
                             if (Model.Board.Storage[i, j].Value == "redKing")
                             {
-                                <th>
+                                <th id="@(i.ToString() + j.ToString())">
                                     CervenaDama
                                 </th>
                             }
                             if (Model.Board.Storage[i, j].Value == "blackKing")
                             {
-                                <th>
+                                <th id="@(i.ToString() + j.ToString())">
                                     CernaDama
                                 </th>
                             }
                         }
                         else
                         {
-                            <th>Nic</th>
+                            <th id="@(i.ToString() + j.ToString())">Nic</th>
                         }
                     }
                 </tr>
@@ -55,6 +55,10 @@
         </table>
     </div>
 </form>
+<div>
+
+    @TempData["buttonval"]
+</div>
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>

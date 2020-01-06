@@ -20,6 +20,7 @@ namespace Checkers_2._0.Pages
 
         public void OnGet()
         {
+
         }
     }
 }

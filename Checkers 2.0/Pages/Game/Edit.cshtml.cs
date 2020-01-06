@@ -23,6 +23,7 @@ namespace Checkers_2._0
         [BindProperty]
         public Game Game { get; set; }
         public Board Board { get; set; }
+        public string Data { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -38,7 +39,18 @@ namespace Checkers_2._0
             }
             return Page();
         }
+        public async Task<IActionResult> check(string button)
+        {
+            string id = "";
+            for (int i = 0; i < Board.Dimension; i++)
+            {
+                for (int j = 0; j < Board.Dimension; j++)
+                {
 
+                }
+            }
+            return Page();
+        }
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
