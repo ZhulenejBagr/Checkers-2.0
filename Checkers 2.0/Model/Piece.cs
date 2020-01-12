@@ -11,6 +11,7 @@ namespace Checkers_2._0.Model
         public bool Color { get; set; }     //true - Red
                                             //false - Black
         public bool IsKing { get; set; }
+        public bool IsPossibleMove { get; set; }
         public Piece(string value)
         {
             Value = value;
@@ -36,6 +37,10 @@ namespace Checkers_2._0.Model
                 Color = false;
                 IsKing = true;
 
+            }
+            else
+            {
+                IsPossibleMove = true;
             }
         }
     }

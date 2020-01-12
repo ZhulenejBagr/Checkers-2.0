@@ -19,6 +19,8 @@ namespace Checkers_2._0.Model
         [Required]
         public bool IsTurn { get; set; }    //true - player1
                                             //false - player2
+        public int LastX { get; set; }  
+        public int LastY { get; set; }
 
         public GameState gameState { get; set; }
         public enum GameState

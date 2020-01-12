@@ -8,9 +8,14 @@
 
 <h1>Edit</h1>
 <form method="post">
+    <input type="hidden" asp-for="Game.Board" />
+    <input type="hidden" asp-for="Game.gameState" />
+    <input type="hidden" asp-for="Game.IsTurn" />
+    <input type="hidden" asp-for="Game.Player1" />
+    <input type="hidden" asp-for="Game.Player2" />
     <div class="border">
         <input type="hidden" asp-for="Game.Id" />
-        <table class="table border">
+        <table class="table border col-md-8">
             @for (int i = 0; i < 8; i++)
             {
                 <tr>
@@ -22,37 +27,46 @@
 
                             if (Model.Board.Storage[i, j].Value == "red")
                             {
-                                <th id="@(i.ToString() +" "+ j.ToString())">
-                                    <button name="button" value="@(i.ToString() + j.ToString())" asp-action="check"><img src="~/redCircle.png" /></button>
-                                </th>
+
+                                <td class="col-md-1" id="@(i.ToString() +" "+ j.ToString())">
+                                    <button name="button" asp-route-id="" asp-route-buttonval="@(i.ToString() +" "+ j.ToString())" asp-page-handler="Check">Cervena</button>
+                                </td>
+
                             }
                             if (Model.Board.Storage[i, j].Value == "black")
                             {
-                                <th id="@(i.ToString() + j.ToString())">
-                                    <img src="~/blackCircle.png" />
-                                </th>
+                                <td class="col-md-1" id="@(i.ToString() + j.ToString())">
+                                    <button name="button" asp-route-id="" asp-route-buttonval="@(i.ToString() +" "+ j.ToString())" asp-page-handler="Check">Cerna</button>
+                                </td>
                             }
                             if (Model.Board.Storage[i, j].Value == "redKing")
                             {
-                                <th id="@(i.ToString() + j.ToString())">
-                                    CervenaDama
-                                </th>
+                                <td class="col-md-1" id="@(i.ToString() + j.ToString())">
+                                    <button name="button" asp-route-id="" asp-route-buttonval="@(i.ToString() +" "+ j.ToString())" asp-page-handler="Check">Cervena Dáma</button>
+                                </td>
                             }
                             if (Model.Board.Storage[i, j].Value == "blackKing")
                             {
-                                <th id="@(i.ToString() + j.ToString())">
-                                    CernaDama
-                                </th>
+                                <td class="col-md-1" id="@(i.ToString() + j.ToString())">
+                                    <button name="button" asp-route-id="" asp-route-buttonval="@(i.ToString() +" "+ j.ToString())" asp-page-handler="Check">Cerna Dama</button>
+                                </td>
+                            }
+                            if (Model.Board.Storage[i, j].Value == "green")
+                            {
+                                <td class="col-md-1" id="@(i.ToString() + j.ToString())">
+                                    <button name="button" asp-route-id="" asp-route-buttonval="@(i.ToString() +" "+ j.ToString())" asp-page-handler="Check">Zelená</button>
+                                </td>
                             }
                         }
                         else
                         {
-                            <th id="@(i.ToString() + j.ToString())">Nic</th>
+                            <td class="col-md-1" id="@(i.ToString() + j.ToString())"></td>
                         }
                     }
                 </tr>
             }
         </table>
+
     </div>
 </form>
 <div>

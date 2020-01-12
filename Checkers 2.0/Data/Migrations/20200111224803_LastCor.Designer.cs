@@ -4,14 +4,16 @@ using Checkers_2._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Checkers_2._0.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200111224803_LastCor")]
+    partial class LastCor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,12 +34,6 @@ namespace Checkers_2._0.Data.Migrations
 
                     b.Property<bool>("IsTurn")
                         .HasColumnType("bit");
-
-                    b.Property<int>("LastX")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LastY")
-                        .HasColumnType("int");
 
                     b.Property<string>("Player1")
                         .IsRequired()

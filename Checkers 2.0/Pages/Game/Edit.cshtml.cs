@@ -22,6 +22,8 @@ namespace Checkers_2._0
 
         [BindProperty]
         public Game Game { get; set; }
+        [TempData]
+        public string buttonval { get; set; }
         public Board Board { get; set; }
         public string Data { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -39,16 +41,22 @@ namespace Checkers_2._0
             }
             return Page();
         }
-        public async Task<IActionResult> check(string button)
+        
+        public async Task<IActionResult> OnPostCheck(string buttonval)
         {
-            string id = "";
-            for (int i = 0; i < Board.Dimension; i++)
+            var xy = Array.ConvertAll(buttonval.Split(' '), int.Parse).ToList();
+            int x = xy[0];
+            int y = xy[1];
+            Board = new Board(Game.Board);
+            if (Board.PossibleMoves(x, y))
             {
-                for (int j = 0; j < Board.Dimension; j++)
-                {
-
-                }
+                Game.IsTurn = !Game.IsTurn;
             }
+
+            var GameFromDb = await _db.Game.FirstOrDefaultAsync(s => s.Id == Game.Id);
+            GameFromDb.Board = Board.SaveBoard(Board.Storage);
+
+            await _db.SaveChangesAsync();
             return Page();
         }
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
